@@ -1,0 +1,15 @@
+const SideBar = () => {
+  return (
+    <aside>
+      <nav>
+        <ul>
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+        </ul>
+      </nav>
+    </aside>
+  );
+};
+
+export default SideBar;
