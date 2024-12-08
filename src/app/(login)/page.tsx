@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 
 export default function Home() {
@@ -62,7 +63,7 @@ export default function Home() {
               type="submit"
               className="w-1/2 bg-blue-800 hover:bg-blue-400 transition duration-500 ease-in-out"
             >
-              Entrar
+              <Link href={"/home"}>Entrar</Link>
             </Button>
           </div>
         </form>
