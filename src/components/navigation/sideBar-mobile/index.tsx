@@ -16,7 +16,7 @@ import {
 
 export function SideBarMobile() {
   return (
-    <div className="grid grid-cols-2 gap-2">
+    <div className="grid grid-cols-2 gap-2 lg:hidden">
       <Sheet>
         <SheetTrigger asChild>
           <RiMenu5Line size={25} className="ml-2" />
