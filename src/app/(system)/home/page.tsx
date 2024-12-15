@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function home() {
   return (
     <main className="w-full py-9">
-      <section className="bg-white w-[90%] mx-auto rounded-md">
+      <section className="bg-white w-[90%] mx-auto rounded-md p-5">
         <h1 className="text-3xl font-bold text-blue-900 text-center mb-4">
           {" "}
           Dashboard
