@@ -10,7 +10,7 @@ const SideBar = () => {
       <nav>
         <ul>
           <Link
-            href={"/"}
+            href={"/home"}
             className="flex items-center justify-center gap-3 transition-transform duration-200 ease-in-out hover:scale-95"
           >
             <FaHome />
@@ -20,7 +20,7 @@ const SideBar = () => {
           <Separator />
 
           <Link
-            href={"/"}
+            href={"/clients"}
             className="flex items-center gap-3 transition-transform duration-200 ease-in-out hover:scale-95"
           >
             <FaUserTag />
