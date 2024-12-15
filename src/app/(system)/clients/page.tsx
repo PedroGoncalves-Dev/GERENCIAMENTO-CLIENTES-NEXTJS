@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 };
 
 export default async function clients() {
-  const data = await getAllClients();
+  // const data = await getAllClients();
   return (
     <main>
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={[]} />
     </main>
   );
 }
