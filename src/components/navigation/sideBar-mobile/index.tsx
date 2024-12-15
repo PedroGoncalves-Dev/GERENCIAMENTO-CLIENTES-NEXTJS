@@ -13,6 +13,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import SideBar from "../sideBar";
+import { Separator } from "@/components/ui/separator";
 
 export function SideBarMobile() {
   return (
@@ -23,15 +25,10 @@ export function SideBarMobile() {
         </SheetTrigger>
         <SheetContent side={"left"}>
           <SheetHeader>
-            <SheetTitle>Dashboard</SheetTitle>
-            <SheetDescription></SheetDescription>
+            <SheetTitle>Menu</SheetTitle>
           </SheetHeader>
-
-          <SheetFooter>
-            <SheetClose asChild>
-              <Button type="submit">Save changes</Button>
-            </SheetClose>
-          </SheetFooter>
+          <Separator />
+          <SideBar />
         </SheetContent>
       </Sheet>
     </div>
