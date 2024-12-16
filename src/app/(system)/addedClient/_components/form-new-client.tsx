@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
+import { IMaskInput } from "react-imask";
 
 const FormNewClient = () => {
   const newClientSchema = z.object({
@@ -54,10 +55,10 @@ const FormNewClient = () => {
 
       <div className="w-full flex flex-col my-5 gap-4">
         <label htmlFor="telefone">Celular:</label>
-        <input
-          type="text"
-          id="telefone"
+        <IMaskInput
+          mask="(00) 00000-0000"
           {...register("telefone_cli")}
+          placeholder="(00) 00000-0000"
           className="bg-orange-100 rounded-xl lg:border-b line leading-7 px-4 py-1"
         />
 
@@ -66,11 +67,11 @@ const FormNewClient = () => {
 
       <div className="w-full flex flex-col my-5 gap-4">
         <label htmlFor="cpf">CPF:</label>
-        <input
-          type="text"
-          id="cpf"
+        <IMaskInput
+          mask="000.000.000-00"
           {...register("cpf_cli")}
-          className=" bg-orange-100 rounded-xl lg:border-b line leading-7 px-4 py-1"
+          placeholder="000.000.000-00"
+          className="bg-orange-100 rounded-xl lg:border-b line leading-7 px-4 py-1"
         />
 
         {errors.cpf_cli && <span>{errors.cpf_cli.message}</span>}
