@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import Link from "next/link";
 import { useState } from "react";
+import { Badge } from "@/components/ui/badge";
 
 const SwitchInativosAtivos = () => {
   const [checked, setChecked] = useState(true);
@@ -22,7 +23,16 @@ const SwitchInativosAtivos = () => {
         htmlFor="ativos-inativos"
         className={`${checked ? "text-primary" : "text-destructive"}`}
       >
-        {checked ? "Ativos" : "Inativos"}
+        {checked ? (
+          <Badge
+            variant={"default"}
+            className="bg-green-800 hover:bg-green-600"
+          >
+            Ativos
+          </Badge>
+        ) : (
+          <Badge variant={"destructive"}>Inativos</Badge>
+        )}
       </Label>
 
       <Link href={"/addedClient"}>
