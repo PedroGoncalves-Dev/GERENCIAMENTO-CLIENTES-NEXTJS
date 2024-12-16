@@ -3,17 +3,24 @@ import localFont from "next/font/local";
 import "../globals.css";
 import NavBar from "@/components/navigation/navBar";
 import SideBar from "@/components/navigation/sideBar";
+import { Roboto } from "next/font/google";
 
-const geistSans = localFont({
-  src: "../fonts/Roboto-Regular.ttf",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const mainFontFamily = Roboto({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+  variable: "--font-main",
 });
-const geistMono = localFont({
-  src: "../fonts/Roboto-Regular.ttf",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+
+// const geistSans = localFont({
+//   src: "../fonts/Montserrat-VariableFont_wght.ttf",
+//   variable: "--font-geist-sans",
+//   weight: "100 900",
+// });
+// const geistMono = localFont({
+//   src: "../fonts/Montserrat-VariableFont_wght.ttf",
+//   variable: "--font-geist-mono",
+//   weight: "100 900",
+// });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,10 +33,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-200 lg:flex`}
-      >
+    <html lang="en" className={`${mainFontFamily.variable} antialiased`}>
+      <body className={`antialiased bg-slate-200 lg:flex`}>
         <div className="hidden lg:block lg:w-1/5 lg:h-full">
           <SideBar />
         </div>
