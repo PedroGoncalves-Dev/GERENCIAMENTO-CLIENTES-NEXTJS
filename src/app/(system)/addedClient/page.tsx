@@ -11,7 +11,7 @@ export default function addedClient() {
   return (
     <main className="bg-white w-[90%] mx-auto rounded-md p-5 my-4 ">
       <div>
-        <h1 className="font-bold text-center">Adicionar novo cliente</h1>
+        <h1 className="font-bold text-center">Cadastrar novo cliente</h1> 
       </div>
 
       <Separator className="my-4" />
