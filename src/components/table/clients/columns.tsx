@@ -32,8 +32,12 @@ export const columns: CustomColumnDef<Iclients, string>[] = [
   },
   {
     accessorKey: "email_cli",
-    header: "Email",
-    meta: { className: "hidden lg:table-cell" },
+    header: ({ column }) => (
+      <span className="hidden md:inline-block font-semibold text-black">
+        Email
+      </span>
+    ),
+    meta: { className: "hidden md:table-cell" },
   },
 
   {
