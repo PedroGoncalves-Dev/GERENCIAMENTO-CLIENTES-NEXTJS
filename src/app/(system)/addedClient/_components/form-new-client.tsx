@@ -3,8 +3,8 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { IMaskInput } from "react-imask";
 import { createClient } from "@/actions/clients/create";
+import MaskedInput from "./maskedInput";
 import { newClientSchema, TypeNewClient } from "@/schema/clients/schema-create";
 
 const FormNewClient = () => {
@@ -27,16 +27,16 @@ const FormNewClient = () => {
 
   const onSubmit = async (data: TypeNewClient) => {
     try {
-      // Remover a máscara dos campos antes de enviar
       const cleanedData = {
         ...data,
-        telefone_cli: data.telefone_cli.replace(/\D/g, ""), // Remove caracteres não numéricos
-        cpf_cli: data.cpf_cli.replace(/\D/g, ""), // Remove caracteres não numéricos
+        telefone_cli: data.telefone_cli.replace(/\D/g, ""),
+        cpf_cli: data.cpf_cli.replace(/\D/g, ""),
       };
 
       const res = await createClient(cleanedData);
 
       if (res) {
+        setSucesso(true);
         reset();
       }
     } catch (error) {
@@ -47,7 +47,12 @@ const FormNewClient = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="w-full flex flex-col my-5 gap-4">
-        <label htmlFor="nome">Nome completo:</label>
+        <label
+          className="after:content-['*'] after:text-red-600 after:ml-1"
+          htmlFor="nome"
+        >
+          Nome completo:
+        </label>
         <Controller
           name="nome_cli"
           control={control}
@@ -61,11 +66,20 @@ const FormNewClient = () => {
             />
           )}
         />
-        {errors.nome_cli && <span>{errors.nome_cli.message}</span>}
+        {errors.nome_cli && (
+          <span className="animate-pulse text-red-600">
+            {errors.nome_cli.message}
+          </span>
+        )}
       </div>
 
       <div className="w-full flex flex-col my-5 gap-4">
-        <label htmlFor="email">Email:</label>
+        <label
+          className="after:content-['*'] after:text-red-600 after:ml-1"
+          htmlFor="email"
+        >
+          Email:
+        </label>
         <Controller
           name="email_cli"
           control={control}
@@ -79,59 +93,70 @@ const FormNewClient = () => {
             />
           )}
         />
-        {errors.email_cli && <span>{errors.email_cli.message}</span>}
+        {errors.email_cli && (
+          <span className="animate-pulse text-red-600">
+            {errors.email_cli.message}
+          </span>
+        )}
       </div>
 
       <div className="w-full flex flex-col my-5 gap-4">
-        <label htmlFor="telefone">Celular:</label>
-        <Controller
+        <label
+          className="after:content-['*'] after:text-red-600 after:ml-1"
+          htmlFor="telefone"
+        >
+          Celular:
+        </label>
+        <MaskedInput
+          control={control}
+          mask="(__) _____-____"
           name="telefone_cli"
-          control={control}
-          render={({ field }) => (
-            <IMaskInput
-              mask="(00) 00000-0000"
-              {...field}
-              placeholder="(00) 00000-0000"
-              className="bg-orange-100 rounded-xl lg:border-b line leading-7 px-4 py-1"
-            />
-          )}
+          placeholder="(00) 00000-0000"
         />
-        {errors.telefone_cli && <span>{errors.telefone_cli.message}</span>}
+        {errors.telefone_cli && (
+          <span className="animate-pulse text-red-600">
+            {errors.telefone_cli.message}
+          </span>
+        )}
       </div>
 
       <div className="w-full flex flex-col my-5 gap-4">
-        <label htmlFor="cpf">CPF:</label>
-        <Controller
+        <label
+          className="after:content-['*'] after:text-red-600 after:ml-1"
+          htmlFor="cpf"
+        >
+          CPF:
+        </label>
+        <MaskedInput
+          control={control}
+          mask="___.___.___-__"
           name="cpf_cli"
-          control={control}
-          render={({ field }) => (
-            <IMaskInput
-              mask="000.000.000-00"
-              {...field}
-              placeholder="000.000.000-00"
-              className="bg-orange-100 rounded-xl lg:border-b line leading-7 px-4 py-1"
-            />
-          )}
+          placeholder="000.000.000-00"
         />
-        {errors.cpf_cli && <span>{errors.cpf_cli.message}</span>}
+        {errors.cpf_cli && (
+          <span className="animate-pulse text-red-600">
+            {errors.cpf_cli.message}
+          </span>
+        )}
       </div>
 
       <div className="w-full flex flex-col my-5 gap-4">
-        <label htmlFor="data_nascimento">Data de Nascimento:</label>
-        <Controller
-          name="data_nascimento_cli"
+        <label
+          className="after:content-['*'] after:text-red-600 after:ml-1"
+          htmlFor="data_nascimento"
+        >
+          Data de Nascimento:
+        </label>
+        <MaskedInput
           control={control}
-          render={({ field }) => (
-            <IMaskInput
-              mask="00/00/0000"
-              {...field}
-              placeholder="00/00/0000"
-              className="bg-orange-100 rounded-xl lg:border-b line leading-7 px-4 py-1"
-            />
-          )}
+          mask="__/__/____"
+          name="data_nascimento_cli"
+          placeholder="00/00/0000"
         />
         {errors.data_nascimento_cli && (
-          <span>{errors.data_nascimento_cli.message}</span>
+          <span className="animate-pulse text-red-600">
+            {errors.data_nascimento_cli.message}
+          </span>
         )}
       </div>
 
