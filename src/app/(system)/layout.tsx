@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Toaster } from "@/components/ui/toaster";
 import "../globals.css";
 import NavBar from "@/components/navigation/navBar";
 import SideBar from "@/components/navigation/sideBar";
@@ -41,6 +41,7 @@ export default function RootLayout({
         <div className="w-full lg:w-4/5">
           <NavBar />
           {children}
+          <Toaster />
         </div>
       </body>
     </html>
