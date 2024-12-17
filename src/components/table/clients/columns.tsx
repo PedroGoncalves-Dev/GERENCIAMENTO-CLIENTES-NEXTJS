@@ -1,7 +1,11 @@
 "use client";
 import { ColumnDef } from "@tanstack/react-table";
 import { Iclients } from "@/data-access/clients/get-all";
-import { FaSortAmountDown } from "react-icons/fa";
+import { FaSortAmountDown, FaRegEdit } from "react-icons/fa";
+import { MdOutlineAutoDelete } from "react-icons/md";
+import { FaCopy } from "react-icons/fa6";
+import { TbListDetails } from "react-icons/tb";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -51,17 +55,17 @@ export const columns: CustomColumnDef<Iclients, string>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="cursor-pointer">
-              Copiar ID
+            <DropdownMenuItem className="cursor-pointer flex justify-between">
+              Copiar ID <FaCopy />
             </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
-              Detalhes
+            <DropdownMenuItem className="cursor-pointer flex justify-between">
+              Detalhes <TbListDetails />
             </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
-              Editar
+            <DropdownMenuItem className="cursor-pointer flex justify-between">
+              Editar <FaRegEdit />
             </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
-              Inativar
+            <DropdownMenuItem className="cursor-pointer flex justify-between">
+              Inativar <MdOutlineAutoDelete />
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
