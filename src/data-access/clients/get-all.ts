@@ -11,7 +11,9 @@ export interface Iclients {
   atualizado_em: string;
 }
 export async function getAllClients(): Promise<Iclients[]> {
-  const res = await fetch("http://localhost:3333/clientes");
+  const res = await fetch("http://localhost:3333/clientes", {
+    next: { tags: ["get-clients"] },
+  });
 
   const resData = await res.json();
 
