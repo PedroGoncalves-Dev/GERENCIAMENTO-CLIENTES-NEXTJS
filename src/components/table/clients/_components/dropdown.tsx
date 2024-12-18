@@ -59,12 +59,14 @@ const DropdownTable = ({ row }: { row: any }) => {
   const handleDetailsClick = () => {
     setIsDetailsOpen(true);
     setDropdownOpen(false);
+    setIsEditOpen(false);
     setModalOpen(true);
   };
 
   const handleEditClick = () => {
     setIsEditOpen(true);
     setDropdownOpen(false);
+    setIsDetailsOpen(false);
     setModalOpen(true);
   };
 
