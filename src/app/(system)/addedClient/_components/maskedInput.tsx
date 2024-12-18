@@ -7,9 +7,16 @@ interface IpropsMask {
   name: keyof TypeNewClient;
   placeholder: string;
   control: Control<TypeNewClient>;
+  valor?: string;
 }
 
-const MaskedInput = ({ mask, name, placeholder, control }: IpropsMask) => (
+const MaskedInput = ({
+  mask,
+  name,
+  placeholder,
+  control,
+  valor,
+}: IpropsMask) => (
   <Controller
     name={name}
     control={control}
@@ -18,6 +25,7 @@ const MaskedInput = ({ mask, name, placeholder, control }: IpropsMask) => (
         {...field}
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        defaultValue={valor}
         mask={mask}
         replacement="_"
         placeholder={placeholder}
