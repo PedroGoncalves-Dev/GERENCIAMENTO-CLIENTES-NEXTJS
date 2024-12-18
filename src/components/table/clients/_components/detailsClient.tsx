@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import {
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -36,14 +37,9 @@ const DetailsClient = ({ cliente }: IpropsModal) => {
         </DialogDescription>
       </DialogHeader>
       <DialogFooter>
-        <Button
-        //   onClick={() => {
-        //     setIsDetailsOpen(false);
-        //     setModalOpen(false);
-        //   }}
-        >
-          Fechar
-        </Button>
+        <DialogClose asChild>
+          <Button>Fechar</Button>
+        </DialogClose>
       </DialogFooter>
     </DialogContent>
   );
