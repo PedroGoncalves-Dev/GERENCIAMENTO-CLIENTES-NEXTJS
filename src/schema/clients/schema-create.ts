@@ -29,22 +29,37 @@ export const newClientSchema = z.object({
     .nonempty("O CPF é obrigatório"),
   data_nascimento_cli: z
     .string()
-    .min(8, "A data de nascimento inválida")
-    .refine((data) => data.trim().length > 0, {
-      message: "A data de nascimento é obrigatória",
-    })
+    .min(10, "Data de nascimento inválida")
     .refine(
       (data) => {
-        const date = new Date(data);
-        return !isNaN(date.getTime());
+        // Verifica se está no formato DD-MM-YYYY
+        const regex = /^\d{2}\/\d{2}\/\d{4}$/;
+        return regex.test(data);
       },
-      { message: "A data de nascimento deve ser válida" }
+      { message: "Formato de data inválido. Use DD-MM-YYYY" }
     )
     .refine(
       (data) => {
-        const birthDate = new Date(data);
+        const [dia, mes, ano] = data.split("/");
+        const date = new Date(`${ano}-${mes}-${dia}`);
+        return !isNaN(date.getTime());
+      },
+      { message: "Data de nascimento inválida" }
+    )
+    .refine(
+      (data) => {
+        const [dia, mes, ano] = data.split("/");
+        const birthDate = new Date(`${ano}-${mes}-${dia}`);
         const today = new Date();
         const age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+
+        if (
+          monthDiff < 0 ||
+          (monthDiff === 0 && today.getDate() < birthDate.getDate())
+        ) {
+          return age - 1 >= 18;
+        }
         return age >= 18;
       },
       { message: "É necessário ser maior de 18 anos" }
