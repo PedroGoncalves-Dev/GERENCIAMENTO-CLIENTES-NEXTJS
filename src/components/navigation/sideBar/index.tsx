@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const SideBar = () => {
   return (
-    <aside className="h-full px-4 bg-orange-50 lg:h-screen">
+    <aside className="h-full px-4 bg-orange-50 shadow-2xl lg:h-screen">
       <nav>
         <ul>
           <Link
