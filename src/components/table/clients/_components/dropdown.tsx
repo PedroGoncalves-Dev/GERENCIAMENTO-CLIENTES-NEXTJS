@@ -13,26 +13,23 @@ import { MdOutlineAutoDelete } from "react-icons/md";
 import { TbListDetails } from "react-icons/tb";
 import { FcOk } from "react-icons/fc";
 import { TiExportOutline } from "react-icons/ti";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import DetailsClient from "./detailsClient";
 import EditClient from "./editClient";
+import { Iclients } from "@/data-access/clients/get-all";
+import ModalPdfOrAxcel from "./pdf-or-axcel";
+import { useClient } from "@/context/client-context";
 
 const DropdownTable = ({ row }: { row: any }) => {
   const { toast } = useToast();
-  const cliente = row.original;
+  const cliente: Iclients = row.original;
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isDownloadPdfOrExcelOpen, setIsDownloadPdfOrExcelOpen] =
+    useState(false);
+  const { setClient } = useClient();
 
   const handleCopy = async () => {
     try {
@@ -70,6 +67,17 @@ const DropdownTable = ({ row }: { row: any }) => {
     setModalOpen(true);
   };
 
+  const handleDownloadPdfOrExcel = () => {
+    setClient(cliente);
+    // Pequeno timeout para garantir que o estado foi atualizado
+
+    setIsDownloadPdfOrExcelOpen(true);
+    setDropdownOpen(false);
+    setIsDetailsOpen(false);
+    setIsEditOpen(false);
+    setModalOpen(true);
+  };
+
   return (
     <>
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
@@ -102,9 +110,16 @@ const DropdownTable = ({ row }: { row: any }) => {
                 Editar <FaRegEdit />
               </DropdownMenuItem>
             </DialogTrigger>
-            <DropdownMenuItem className="cursor-pointer flex justify-between">
-              Exportar dados <TiExportOutline />
-            </DropdownMenuItem>
+
+            <DialogTrigger asChild>
+              <DropdownMenuItem
+                className="cursor-pointer flex justify-between"
+                onClick={handleDownloadPdfOrExcel}
+              >
+                Exportar dados <TiExportOutline />
+              </DropdownMenuItem>
+            </DialogTrigger>
+
             <DropdownMenuItem className="cursor-pointer flex justify-between">
               Inativar <MdOutlineAutoDelete />
             </DropdownMenuItem>
@@ -115,6 +130,8 @@ const DropdownTable = ({ row }: { row: any }) => {
         {isDetailsOpen && <DetailsClient cliente={cliente} />}
 
         {isEditOpen && <EditClient cliente={cliente} />}
+
+        {isDownloadPdfOrExcelOpen && <ModalPdfOrAxcel />}
       </Dialog>
     </>
   );
