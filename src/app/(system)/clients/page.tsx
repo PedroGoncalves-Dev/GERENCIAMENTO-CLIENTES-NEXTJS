@@ -5,8 +5,6 @@ import type { Metadata } from "next";
 import { Separator } from "@/components/ui/separator";
 import SwitchInativosAtivos from "./_components/switch-inativos-ativos";
 
-import DownloadPdf from "@/components/pdf/download-button";
-
 export const metadata: Metadata = {
   title: "Clientes",
   description: "Descrição da página",
@@ -23,8 +21,6 @@ export default async function clients() {
       </section>
       <Separator className="my-4" />
       <DataTable columns={columns} data={data} />
-
-      <DownloadPdf />
     </main>
   );
 }
