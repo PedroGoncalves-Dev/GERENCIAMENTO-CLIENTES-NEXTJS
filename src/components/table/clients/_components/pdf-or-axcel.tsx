@@ -10,9 +10,38 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useClient } from "@/context/client-context";
+import { exportToExcel } from "@/components/excel/function-excel";
+import { toast } from "@/hooks/use-toast";
+import { FcOk } from "react-icons/fc";
 
 const ModalPdfOrAxcel = () => {
   const { client } = useClient();
+  const dadosCliente = [
+    {
+      Nome: client?.nome_cli,
+    },
+  ];
+  const hanldeExportToExcel = async () => {
+    try {
+      await exportToExcel(dadosCliente, "dados-cliente");
+      toast({
+        title: "Sucesso",
+        description: (
+          <div className="flex items-center gap-2">
+            <FcOk />
+            Download para excel com sucesso!
+          </div>
+        ),
+        duration: 3000,
+      });
+    } catch (error) {
+      toast({
+        title: "Erro ao fazer o download",
+        variant: "destructive",
+        duration: 3000,
+      });
+    }
+  };
   return (
     <DialogContent>
       <DialogHeader>
@@ -20,7 +49,10 @@ const ModalPdfOrAxcel = () => {
         <DialogDescription>Deseja fazer o downloado para ...</DialogDescription>
       </DialogHeader>
       <div className="flex gap-4 justify-center items-center">
-        <Button className="bg-green-500 focus:outline-none hover:bg-green-300 hover:text-slate-500 transition-colors duration-300 ease-out">
+        <Button
+          onClick={hanldeExportToExcel}
+          className="bg-green-500 focus:outline-none hover:bg-green-300 hover:text-slate-500 transition-colors duration-300 ease-out"
+        >
           Excel
         </Button>
         {client ? (
