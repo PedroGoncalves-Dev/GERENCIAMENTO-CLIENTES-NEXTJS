@@ -4,6 +4,7 @@ import "../globals.css";
 import NavBar from "@/components/navigation/navBar";
 import SideBar from "@/components/navigation/sideBar";
 import { Roboto } from "next/font/google";
+import { ClientProvider } from "@/context/client-context";
 
 const mainFontFamily = Roboto({
   weight: ["400", "500", "700"],
@@ -35,14 +36,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${mainFontFamily.variable} antialiased`}>
       <body className={`antialiased bg-slate-200 lg:flex`}>
-        <div className="hidden lg:block lg:w-1/5 lg:h-full">
-          <SideBar />
-        </div>
-        <div className="w-full lg:w-4/5">
-          <NavBar />
-          {children}
-          <Toaster />
-        </div>
+        <ClientProvider>
+          <div className="hidden lg:block lg:w-1/5 lg:h-full">
+            <SideBar />
+          </div>
+          <div className="w-full lg:w-4/5">
+            <NavBar />
+            {children}
+            <Toaster />
+          </div>
+        </ClientProvider>
       </body>
     </html>
   );
