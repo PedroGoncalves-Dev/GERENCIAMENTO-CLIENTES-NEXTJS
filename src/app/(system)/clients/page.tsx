@@ -4,6 +4,7 @@ import { getAllClients } from "@/data-access/clients/get-all";
 import type { Metadata } from "next";
 import { Separator } from "@/components/ui/separator";
 import SwitchInativosAtivos from "./_components/switch-inativos-ativos";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Clientes",
@@ -20,7 +21,9 @@ export default async function clients() {
         <SwitchInativosAtivos />
       </section>
       <Separator className="my-4" />
-      <DataTable columns={columns} data={data} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <DataTable columns={columns} data={data} />
+      </Suspense>
     </main>
   );
 }
