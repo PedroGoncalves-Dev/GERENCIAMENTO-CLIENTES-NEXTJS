@@ -19,12 +19,14 @@ import EditClient from "./editClient";
 import { Iclients } from "@/data-access/clients/get-all";
 import ModalPdfOrAxcel from "./pdf-or-axcel";
 import { useClient } from "@/context/client-context";
+import ModalInactiveClient from "./inactive-client";
 
 const DropdownTable = ({ row }: { row: any }) => {
   const { toast } = useToast();
   const cliente: Iclients = row.original;
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isInactiveOpen, setIsInativeOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isDownloadPdfOrExcelOpen, setIsDownloadPdfOrExcelOpen] =
@@ -78,6 +80,13 @@ const DropdownTable = ({ row }: { row: any }) => {
     setModalOpen(true);
   };
 
+  const handleInactiveClick = () => {
+    setIsInativeOpen(true);
+    setModalOpen(true);
+    setDropdownOpen(false);
+    setIsDetailsOpen(false);
+    setIsEditOpen(false);
+  };
   return (
     <>
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
@@ -120,9 +129,14 @@ const DropdownTable = ({ row }: { row: any }) => {
               </DropdownMenuItem>
             </DialogTrigger>
 
-            <DropdownMenuItem className="cursor-pointer flex justify-between">
-              Inativar <MdOutlineAutoDelete />
-            </DropdownMenuItem>
+            <DialogTrigger asChild>
+              <DropdownMenuItem
+                className="cursor-pointer flex justify-between"
+                onClick={handleInactiveClick}
+              >
+                Inativar <MdOutlineAutoDelete />
+              </DropdownMenuItem>
+            </DialogTrigger>
           </DropdownMenuContent>
         </DropdownMenu>
         {/* Modal de Detalhes */}
@@ -132,6 +146,8 @@ const DropdownTable = ({ row }: { row: any }) => {
         {isEditOpen && <EditClient cliente={cliente} />}
 
         {isDownloadPdfOrExcelOpen && <ModalPdfOrAxcel />}
+
+        {isInactiveOpen && <ModalInactiveClient />}
       </Dialog>
     </>
   );
