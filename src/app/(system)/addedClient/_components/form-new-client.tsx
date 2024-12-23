@@ -6,9 +6,12 @@ import { Button } from "@/components/ui/button";
 import { createClient } from "@/actions/clients/create";
 import MaskedInput from "./maskedInput";
 import { newClientSchema, TypeNewClient } from "@/schema/clients/schema-create";
+import { toast } from "@/hooks/use-toast";
+import { FcOk } from "react-icons/fc";
 
 const FormNewClient = () => {
   const [sucesso, setSucesso] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const {
     handleSubmit,
     formState: { errors },
@@ -26,6 +29,7 @@ const FormNewClient = () => {
   });
 
   const onSubmit = async (data: TypeNewClient) => {
+    setIsLoading(true);
     try {
       const cleanedData = {
         ...data,
@@ -38,9 +42,25 @@ const FormNewClient = () => {
       if (res) {
         setSucesso(true);
         reset();
+        toast({
+          title: "Sucesso",
+          description: (
+            <div className="flex items-center gap-2">
+              <FcOk />
+              Cliente cadastrado com sucesso!
+            </div>
+          ),
+          duration: 4000,
+        });
       }
     } catch (error) {
-      console.log("Erro ao cadastrar cliente:", error);
+      toast({
+        title: "Erro ao cadastrar cliente",
+        variant: "destructive",
+        duration: 4000,
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -160,7 +180,9 @@ const FormNewClient = () => {
         )}
       </div>
 
-      <Button type="submit">Cadastrar</Button>
+      <Button type="submit" disabled={isLoading}>
+        {isLoading ? "Carregando..." : "Cadastrar"}
+      </Button>
     </form>
   );
 };
