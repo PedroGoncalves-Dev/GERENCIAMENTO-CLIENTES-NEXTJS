@@ -147,7 +147,14 @@ const DropdownTable = ({ row }: { row: any }) => {
 
         {isDownloadPdfOrExcelOpen && <ModalPdfOrAxcel />}
 
-        {isInactiveOpen && <ModalInactiveClient />}
+        {isInactiveOpen && (
+          <ModalInactiveClient
+            nome={cliente.nome_cli}
+            cpf={cliente.cpf_cli}
+            id={cliente.id_cli}
+            setInativeOpen={setIsInativeOpen}
+          />
+        )}
       </Dialog>
     </>
   );
