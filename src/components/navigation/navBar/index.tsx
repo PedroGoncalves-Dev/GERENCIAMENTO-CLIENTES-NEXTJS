@@ -3,7 +3,7 @@ import { SideBarMobile } from "../sideBar-mobile";
 
 const NavBar = () => {
   return (
-    <header className="h-12 w-full bg-[#f0ddb5] flex items-center">
+    <header className="h-14 w-full bg-white  flex items-center mb-10">
       <Image
         src="/icons/logo.svg"
         alt="logo"

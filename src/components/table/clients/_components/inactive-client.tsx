@@ -1,4 +1,5 @@
 import { inativeClient } from "@/actions/clients/inactve";
+import ButtonLoading from "@/components/button-loading/button-loading";
 import { Button } from "@/components/ui/button";
 import {
   DialogClose,
@@ -10,7 +11,6 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "@/hooks/use-toast";
 import { FcOk } from "react-icons/fc";
-import { set } from "zod";
 
 interface IpropsInativeClient {
   id: string;
@@ -64,10 +64,12 @@ const ModalInactiveClient = ({
       </DialogHeader>
 
       <DialogFooter>
-        <DialogClose asChild>
-          <Button variant={"outline"}>Cancelar</Button>
+        <DialogClose asChild className="outline-none">
+          <Button variant={"secondary"} className="outline-none">
+            Cancelar
+          </Button>
         </DialogClose>
-        <Button onClick={handleInactiveCliente}>Confirmar</Button>
+        <ButtonLoading onClick={handleInactiveCliente} />
       </DialogFooter>
     </DialogContent>
   );

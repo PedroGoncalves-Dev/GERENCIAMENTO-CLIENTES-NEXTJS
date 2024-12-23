@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const SideBar = () => {
   return (
-    <aside className="h-full px-4 bg-white lg:bg-orange-50 shadow-2xl lg:h-screen">
+    <aside className="h-full px-4 bg-white lg:bg-[#154360] shadow-2xl lg:h-screen">
       <nav>
         <ul>
           <Link
@@ -21,10 +21,12 @@ const SideBar = () => {
 
           <Link
             href={"/clients"}
-            className="flex items-center gap-3 transition-transform duration-200 ease-in-out hover:scale-95"
+            className="flex items-center gap-3 transition-transform duration-200 ease-in-out hover:scale-95  "
           >
-            <FaUserTag />
-            <li className="font-semibold py-2">Gestão de Clientes</li>
+            <FaUserTag className="text-slate-200 " />
+            <li className="font-semibold py-2 text-slate-200  ">
+              Gestão de Clientes
+            </li>
           </Link>
 
           <Separator />
