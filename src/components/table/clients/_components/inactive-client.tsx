@@ -58,7 +58,7 @@ const ModalInactiveClient = ({
         <DialogTitle>Inativar cliente</DialogTitle>
         <DialogDescription>
           Deseja inativar o cliente de nome{" "}
-          <span className="bg-yellow-200 text-black p-1">{nome}</span> do cpf
+          <span className="bg-yellow-200 text-black p-1">{nome}</span> do cpf{" "}
           <span className="bg-yellow-200 text-black p-1">{cpf}</span>
         </DialogDescription>
       </DialogHeader>
