@@ -29,7 +29,7 @@ const MaskedInput = ({
         mask={mask}
         replacement="_"
         placeholder={placeholder}
-        className="bg-orange-100 rounded-xl lg:border-b line leading-7 px-4 py-1"
+        className="bg-[#1543601e] rounded-xl lg:border-b line leading-7 px-4 py-1"
         showMask={false}
         separate
       />
