@@ -1,6 +1,7 @@
 import { InputMask } from "@react-input/mask";
 import { TypeNewClient } from "@/schema/clients/schema-create";
 import { Control, Controller } from "react-hook-form";
+import { object } from "zod";
 
 interface IpropsMask {
   mask: string;
@@ -23,7 +24,7 @@ const MaskedInput = ({
     render={({ field: { onChange, value, ...field } }) => (
       <InputMask
         {...field}
-        value={value}
+        value={value ?? ""}
         onChange={(e) => onChange(e.target.value)}
         defaultValue={valor}
         mask={mask}
