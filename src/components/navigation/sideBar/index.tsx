@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const SideBar = () => {
   return (
-    <aside className="h-full  bg-white lg:bg-[#154360] lg:shadow-2xl lg:h-screen">
+    <aside className="h-full fixed w-1/5 bg-white lg:bg-[#154360] lg:shadow-2xl lg:h-screen">
       <nav>
         <div className="pt-8 pb-10 w-full">
           <Image

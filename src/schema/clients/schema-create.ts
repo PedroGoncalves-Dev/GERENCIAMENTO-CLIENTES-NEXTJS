@@ -64,6 +64,10 @@ export const newClientSchema = z.object({
       },
       { message: "É necessário ser maior de 18 anos" }
     ),
+  sexo_cli: z
+    .string()
+    .min(1, "Selecione o sexo")
+    .nonempty("O sexo é obrigatório"),
 });
 
 export type TypeNewClient = z.infer<typeof newClientSchema>;
