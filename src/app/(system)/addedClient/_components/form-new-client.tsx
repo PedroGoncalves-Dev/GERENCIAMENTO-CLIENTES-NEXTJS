@@ -224,9 +224,9 @@ const FormNewClient = () => {
             )}
           />
 
-          {errors.cpf_cli && (
+          {errors.sexo_cli && (
             <span className="animate-pulse text-red-600">
-              {errors.cpf_cli.message}
+              {errors.sexo_cli.message}
             </span>
           )}
         </div>
