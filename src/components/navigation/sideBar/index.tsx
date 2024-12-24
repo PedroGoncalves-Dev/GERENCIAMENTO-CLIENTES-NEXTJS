@@ -23,7 +23,7 @@ const SideBar = () => {
           <Separator className="w-4/5 mx-auto bg-slate-500" />
 
           <Link
-            href={"/clients"}
+            href={"/home"}
             className="flex items-center p-4 gap-3 transition-transform duration-200 ease-in-out hover:scale-95  "
           >
             <FaHome className="text-slate-300 " />
