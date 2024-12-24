@@ -68,6 +68,35 @@ export const newClientSchema = z.object({
     .string()
     .min(1, "Selecione o sexo")
     .nonempty("O sexo é obrigatório"),
+  cep: z.string(),
+  // .regex(/^\d{8}$/, { message: "O CEP deve conter 8 dígitos numéricos" }),
+  logradouro: z
+    .string()
+    .min(2, { message: "O logradouro deve ter no mínimo 2 caracteres" })
+    .max(70, { message: "O logradouro deve ter no máximo 70 caracteres" })
+    .trim(),
+  numero: z.string().nonempty({ message: "O campo numero é obrigatório" }),
+  bairro: z
+    .string()
+    .min(2, { message: "O bairro deve ter no mínimo 2 caracteres" })
+    .max(70, { message: "O bairro deve ter no máximo 70 caracteres" })
+    .trim(),
+  cidade: z
+    .string()
+    .min(2, { message: "A cidade deve ter no mínimo 2 caracteres" })
+    .max(70, { message: "A cidade deve ter no máximo 70 caracteres" })
+    .trim(),
+  estado: z
+    .string()
+    .length(2, { message: "O estado deve ter 2 caracteres" })
+    .trim()
+    .toUpperCase(),
+  complemento: z
+    .string()
+    .max(100, { message: "O complemento deve ter no máximo 100 caracteres" })
+    .optional()
+    .nullable()
+    .default(""),
 });
 
 export type TypeNewClient = z.infer<typeof newClientSchema>;
