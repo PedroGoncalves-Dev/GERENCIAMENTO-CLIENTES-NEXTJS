@@ -23,6 +23,16 @@ export async function createClient(formData: TypeNewClient) {
       telefone_cli: formData.telefone_cli,
       cpf_cli: formData.cpf_cli,
       data_nascimento_cli: formData.data_nascimento_cli,
+      sexo_cli: formData.sexo_cli,
+      endereco: {
+        cep: formData.cep,
+        logradouro: formData.logradouro,
+        numero: formData.numero,
+        bairro: formData.bairro,
+        cidade: formData.cidade,
+        estado: formData.estado,
+        complemento: formData.complemento,
+      },
     };
     console.log(dataCleint);
 
@@ -34,7 +44,7 @@ export async function createClient(formData: TypeNewClient) {
       body: JSON.stringify(dataCleint),
     });
     if (!res.ok) {
-      console.log(`Erro ao cadastrar cliente: ${res.statusText}`);
+      throw new Error(`Erro ao cadastrar cliente: ${res.statusText}`);
     }
 
     const resData = await res.json();
