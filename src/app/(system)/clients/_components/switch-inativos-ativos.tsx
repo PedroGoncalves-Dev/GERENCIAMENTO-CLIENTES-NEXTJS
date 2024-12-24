@@ -36,7 +36,7 @@ const SwitchInativosAtivos = () => {
       </Label>
 
       <Link href={"/addedClient"}>
-        <Button className="bg-[#008080] hover:bg-[#008080a6]  transition-colors duration-500 ease-in-out">
+        <Button className="bg-cor-botao-primario hover:bg-cor-botao-primario-hover  transition-colors duration-500 ease-in-out">
           Adicionar Cliente
         </Button>
       </Link>
