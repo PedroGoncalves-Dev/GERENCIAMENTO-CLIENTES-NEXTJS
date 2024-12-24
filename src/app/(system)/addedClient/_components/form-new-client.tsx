@@ -8,6 +8,15 @@ import MaskedInput from "./maskedInput";
 import { newClientSchema, TypeNewClient } from "@/schema/clients/schema-create";
 import { toast } from "@/hooks/use-toast";
 import { FcOk } from "react-icons/fc";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const FormNewClient = () => {
   const [sucesso, setSucesso] = useState(false);
@@ -25,6 +34,7 @@ const FormNewClient = () => {
       telefone_cli: "",
       cpf_cli: "",
       data_nascimento_cli: "",
+      sexo_cli: "",
     },
   });
 
@@ -65,7 +75,7 @@ const FormNewClient = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
       <div className="w-full flex flex-col my-5 gap-4">
         <label
           className="after:content-['*'] after:text-red-600 after:ml-1"
@@ -82,7 +92,7 @@ const FormNewClient = () => {
               id="nome"
               placeholder="Digite seu nome completo"
               {...field}
-              className="bg-orange-100 rounded-xl lg:border-b line leading-7 px-4 py-1"
+              className="bg-[#1543601e] rounded-xl lg:border-b line leading-7 px-4 py-1"
             />
           )}
         />
@@ -109,7 +119,7 @@ const FormNewClient = () => {
               id="email"
               placeholder="Digite seu email"
               {...field}
-              className="bg-orange-100 rounded-xl lg:border-b line leading-7 px-4 py-1"
+              className="bg-[#1543601e] rounded-xl lg:border-b line leading-7 px-4 py-1"
             />
           )}
         />
@@ -180,7 +190,42 @@ const FormNewClient = () => {
         )}
       </div>
 
-      <Button type="submit" disabled={isLoading}>
+      <div className="mt-5 mb-8">
+        <label
+          htmlFor=""
+          className="after:content-['*'] after:text-red-600 after:ml-1 block text-sm font-medium"
+        >
+          Sexo
+        </label>
+        <Controller
+          name="sexo_cli"
+          control={control}
+          render={({ field }) => (
+            <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Selecione o sexo" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Masculino">Masculino</SelectItem>
+                <SelectItem value="Feminino">Feminino</SelectItem>
+                <SelectItem value="Outro">Outro</SelectItem>
+              </SelectContent>
+            </Select>
+          )}
+        />
+
+        {errors.cpf_cli && (
+          <span className="animate-pulse text-red-600">
+            {errors.cpf_cli.message}
+          </span>
+        )}
+      </div>
+
+      <Button
+        type="submit"
+        disabled={isLoading}
+        className="bg-cor-botao-primario  md:w-1/3 md:mx-auto md:hover:bg-cor-botao-primario-hover  lg:w-1/4"
+      >
         {isLoading ? "Carregando..." : "Cadastrar"}
       </Button>
     </form>

@@ -15,6 +15,8 @@ export default {
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        "cor-botao-primario": "#008080",
+        "cor-botao-primario-hover": "#008080a6",
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
