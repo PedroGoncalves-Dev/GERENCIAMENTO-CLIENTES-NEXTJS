@@ -1,5 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { FaUserTag, FaBuildingUser } from "react-icons/fa6";
+import { BsBoxSeamFill } from "react-icons/bs";
 import { FaHome } from "react-icons/fa";
 
 import Link from "next/link";
@@ -60,7 +61,10 @@ const SideBar = () => {
             href={"/"}
             className="flex items-center p-4 gap-3 transition-transform duration-200 ease-in-out hover:scale-95"
           >
-            <li className="font-medium py-2 text-slate-300">Item 3</li>
+            <BsBoxSeamFill className="text-slate-300" />
+            <li className="font-medium py-2 text-slate-300">
+              Gestão de produtos
+            </li>
           </Link>
 
           <Separator className="w-3/5 mx-auto bg-slate-500" />
