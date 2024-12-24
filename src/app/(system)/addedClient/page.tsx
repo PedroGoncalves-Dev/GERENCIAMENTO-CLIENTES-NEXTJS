@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function addedClient() {
   return (
-    <main className="bg-white w-[90%] mx-auto rounded-md p-5 my-4 ">
+    <main className="bg-white w-[90%] mx-auto rounded-md p-5 my-4 shadow-2xl">
       <div>
         <h1 className="font-bold text-center">Cadastrar novo cliente</h1>
       </div>
