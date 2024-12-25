@@ -86,6 +86,12 @@ const PDFDocument = (propps: IpropsClient) => {
           <Text style={styles.text}>Nome: {propps.client?.nome_cli}</Text>
           <Text style={styles.text}>CPF: {propps.client?.cpf_cli}</Text>
           <Text style={styles.text}>
+            Sexo:{" "}
+            {propps.client?.sexo_cli
+              ? propps.client?.sexo_cli
+              : "Não informado"}
+          </Text>
+          <Text style={styles.text}>
             Data de nascimento: {propps.client?.data_nascimento_cli}
           </Text>
         </View>
@@ -102,6 +108,9 @@ const PDFDocument = (propps: IpropsClient) => {
           <Text style={styles.title}>Informações adicionais</Text>
           <Text style={styles.text}>
             Data de cadastro: {propps.client?.criado_em}
+          </Text>
+          <Text style={styles.text}>
+            Status do cliente : {propps.client?.status ? "Ativo" : "Inativo"}
           </Text>
         </View>
 
