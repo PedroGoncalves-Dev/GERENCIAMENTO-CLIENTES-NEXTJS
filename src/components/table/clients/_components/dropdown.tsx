@@ -59,6 +59,8 @@ const DropdownTable = ({ row }: { row: any }) => {
     setIsDetailsOpen(true);
     setDropdownOpen(false);
     setIsEditOpen(false);
+    setIsInativeOpen(false);
+    setIsDownloadPdfOrExcelOpen(false);
     setModalOpen(true);
   };
 
@@ -66,17 +68,18 @@ const DropdownTable = ({ row }: { row: any }) => {
     setIsEditOpen(true);
     setDropdownOpen(false);
     setIsDetailsOpen(false);
+    setIsInativeOpen(false);
+    setIsDownloadPdfOrExcelOpen(false);
     setModalOpen(true);
   };
 
   const handleDownloadPdfOrExcel = () => {
     setClient(cliente);
-    // Pequeno timeout para garantir que o estado foi atualizado
-
     setIsDownloadPdfOrExcelOpen(true);
     setDropdownOpen(false);
     setIsDetailsOpen(false);
     setIsEditOpen(false);
+    setIsInativeOpen(false);
     setModalOpen(true);
   };
 
@@ -86,6 +89,7 @@ const DropdownTable = ({ row }: { row: any }) => {
     setDropdownOpen(false);
     setIsDetailsOpen(false);
     setIsEditOpen(false);
+    setIsDownloadPdfOrExcelOpen(false);
   };
   return (
     <>
