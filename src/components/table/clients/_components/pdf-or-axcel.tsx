@@ -18,7 +18,16 @@ const ModalPdfOrAxcel = () => {
   const { client } = useClient();
   const dadosCliente = [
     {
+      Id: client?.id_cli,
       Nome: client?.nome_cli,
+      CPF: client?.cpf_cli,
+      Email: client?.email_cli,
+      Telefone: client?.telefone_cli,
+      Data_nascimento: client?.data_nascimento_cli,
+      Sexo: client?.sexo_cli,
+      Status: client?.status,
+      Criado_em: client?.criado_em,
+      Atualizado_em: client?.atualizado_em,
     },
   ];
   const hanldeExportToExcel = async () => {
