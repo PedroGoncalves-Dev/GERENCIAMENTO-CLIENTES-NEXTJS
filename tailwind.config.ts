@@ -68,6 +68,9 @@ export default {
         xl: "4px 4px 8px rgba(0, 0, 0, 0.5)",
       },
     },
+    gridTemplateColumns: {
+      "repeat-1-min400px": "repeat(1, minmax(auto, 600px))",
+    },
   },
   plugins: [
     require("tailwindcss-animate"),
