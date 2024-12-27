@@ -6,7 +6,7 @@ export const exportToExcel = (data: any[], fileName: string) => {
 
   // Converte os dados para o formato de planilha
   const worksheet = XLSX.utils.json_to_sheet(data);
-
+  
   // Adiciona a planilha ao workbook
   XLSX.utils.book_append_sheet(workbook, worksheet, "Dados");
 
