@@ -11,7 +11,6 @@ import { Iclients } from "@/data-access/clients/get-all";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { newClientSchema, TypeNewClient } from "@/schema/clients/schema-create";
-import { Loader2 } from "lucide-react";
 import { SlReload } from "react-icons/sl";
 
 import MaskedInput from "@/app/(system)/addedClient/_components/maskedInput";
@@ -29,6 +28,9 @@ import { useState, useEffect, Suspense } from "react";
 import { getAllCitys, Icity } from "@/data-access/city-state/city";
 import { getAllStates, Istate } from "@/data-access/city-state/state";
 import { Toast } from "@/components/ui/toast";
+import { editClient } from "@/actions/clients/edit-client";
+import { toast } from "@/hooks/use-toast";
+import { FcOk } from "react-icons/fc";
 
 interface IpropsModalEdit {
   cliente: Iclients;
@@ -43,7 +45,7 @@ const EditClient = ({ cliente }: IpropsModalEdit) => {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<TypeNewClient>({
     resolver: zodResolver(newClientSchema),
     defaultValues: {
@@ -105,12 +107,51 @@ const EditClient = ({ cliente }: IpropsModalEdit) => {
     fetchCities();
   }, [estadoSelecionado]);
 
+  const onSubmit = async (data: TypeNewClient) => {
+    const clonedData = {
+      ...data,
+      telefone_cli: data.telefone_cli.replace(/\D/g, ""),
+      cpf_cli: data.cpf_cli.replace(/\D/g, ""),
+      cep: data.cep.replace(/\D/g, ""),
+    };
+    try {
+      const res = await editClient(clonedData, String(cliente.id_cli));
+
+      if (!res) {
+        toast({
+          title: "Erro ao editar cliente",
+          variant: "destructive",
+          duration: 3000,
+        });
+
+        console.error("Erro ao editar cliente:", res);
+      }
+
+      toast({
+        title: "Sucesso",
+        description: (
+          <div className="flex items-center gap-2">
+            <FcOk size={25} />
+            Cliente editado com sucesso!
+          </div>
+        ),
+        duration: 4000,
+      });
+    } catch (error) {
+      toast({
+        title: "Erro ao editar cliente",
+        variant: "destructive",
+        duration: 3000,
+      });
+    }
+  };
+
   return (
     <DialogContent className="sm:w-4/5 lg:w-1/2">
       <DialogHeader>
         <DialogTitle>Editar Cliente</DialogTitle>
         <DialogDescription asChild>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
             <div className="grid lg:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="nome" className="block text-sm font-medium">
@@ -210,6 +251,12 @@ const EditClient = ({ cliente }: IpropsModalEdit) => {
                   name="cpf_cli"
                   control={control}
                 />
+
+                {errors.cpf_cli && (
+                  <span className="text-xs text-red-500">
+                    {errors.cpf_cli.message}
+                  </span>
+                )}
               </div>
 
               <div>
@@ -220,7 +267,6 @@ const EditClient = ({ cliente }: IpropsModalEdit) => {
                   mask="(__) _____-____"
                   name="telefone_cli"
                   control={control}
-                  valor={cliente.telefone_cli}
                 />
               </div>
             </div>
@@ -239,6 +285,7 @@ const EditClient = ({ cliente }: IpropsModalEdit) => {
                   render={({ field }) => (
                     <Select
                       onValueChange={field.onChange}
+                      defaultValue={field.value}
                       disabled={!estadoSelecionado || loading}
                     >
                       <SelectTrigger>
@@ -281,6 +328,7 @@ const EditClient = ({ cliente }: IpropsModalEdit) => {
                         field.onChange(value);
                         setEstadoSelecionado(value);
                       }}
+                      defaultValue={field.value}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Selecione a UF" />
@@ -366,12 +414,14 @@ const EditClient = ({ cliente }: IpropsModalEdit) => {
                 />
               </div>
             </div>
+            <Button type="submit" disabled={isSubmitting}>
+              Salvar alterações
+            </Button>
           </form>
         </DialogDescription>
       </DialogHeader>
       <DialogFooter>
         <Button variant="outline">Cancelar</Button>
-        <Button type="submit">Salvar alterações</Button>
       </DialogFooter>
     </DialogContent>
   );
