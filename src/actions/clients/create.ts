@@ -14,7 +14,7 @@ export async function createClient(formData: TypeNewClient) {
       !formData.cpf_cli ||
       !formData.data_nascimento_cli
     ) {
-      console.log("Campos obrigatórios ausentes");
+      return false;
     }
     console.log(formData);
     const dataCleint = {
