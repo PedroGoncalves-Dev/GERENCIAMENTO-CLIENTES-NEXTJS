@@ -30,7 +30,11 @@ const MaskedInput = ({
         <InputMask
           {...field}
           value={formattedValue}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => {
+            // Remove todos os caracteres não numéricos antes de passar para o onChange
+            const numericValue = e.target.value.replace(/\D/g, "");
+            onChange(numericValue);
+          }}
           mask={mask}
           replacement="_"
           placeholder={placeholder}
