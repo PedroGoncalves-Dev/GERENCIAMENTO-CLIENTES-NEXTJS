@@ -71,6 +71,14 @@ const FormNewClient = () => {
           duration: 4000,
         });
       }
+
+      if (!res) {
+        toast({
+          title: "Erro ao cadastrar cliente",
+          variant: "destructive",
+          duration: 4000,
+        });
+      }
     } catch (error) {
       toast({
         title: "Erro ao cadastrar cliente",
