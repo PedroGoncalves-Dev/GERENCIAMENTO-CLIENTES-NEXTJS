@@ -150,6 +150,7 @@ const FormNewClient = () => {
           </label>
           <MaskedInput
             control={control}
+            className="bg-[#1543601e] rounded-xl lg:border-b line leading-7 px-4 py-1"
             mask="(__) _____-____"
             name="telefone_cli"
             placeholder="(00) 00000-0000"
@@ -170,6 +171,7 @@ const FormNewClient = () => {
           </label>
           <MaskedInput
             control={control}
+            className="bg-[#1543601e] rounded-xl lg:border-b line leading-7 px-4 py-1"
             mask="___.___.___-__"
             name="cpf_cli"
             placeholder="000.000.000-00"
@@ -190,6 +192,7 @@ const FormNewClient = () => {
           </label>
           <MaskedInput
             control={control}
+            className="bg-[#1543601e] rounded-xl lg:border-b line leading-7 px-4 py-1"
             mask="__/__/____"
             name="data_nascimento_cli"
             placeholder="00/00/0000"
@@ -241,6 +244,7 @@ const FormNewClient = () => {
             render={({ field }) => (
               <MaskedInput
                 control={control}
+                className="bg-[#1543601e] rounded-xl lg:border-b line leading-7 px-4 py-1"
                 mask="_____-___"
                 name="cep"
                 placeholder="00000-000"

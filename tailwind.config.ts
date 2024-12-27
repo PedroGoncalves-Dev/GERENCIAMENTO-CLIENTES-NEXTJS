@@ -67,9 +67,13 @@ export default {
         lg: "3px 3px 6px rgba(0, 0, 0, 0.5)",
         xl: "4px 4px 8px rgba(0, 0, 0, 0.5)",
       },
-    },
-    gridTemplateColumns: {
-      "repeat-1-min400px": "repeat(1, minmax(auto, 600px))",
+      gridTemplateColumns: {
+        "repeat-1-min400px": "repeat(1, minmax(auto, 600px))",
+        "repeat-2-min400px": "repeat(2, minmax(auto, 1000px))",
+      },
+      animation: {
+        "spin-slow": "spin 3s linear infinite",
+      },
     },
   },
   plugins: [
