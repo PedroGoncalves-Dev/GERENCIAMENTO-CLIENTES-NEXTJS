@@ -14,18 +14,12 @@ export const newClientSchema = z.object({
     .nonempty("O email é obrigatório"),
   telefone_cli: z
     .string()
-    .regex(
-      /^\(\d{2}\) \d{5}-\d{4}$/,
-      "O número de telefone deve estar no formato (00) 00000-0000"
-    )
+    .regex(/^\d{11}$/, "Telefone inválido")
     .nonempty("O telefone é obrigatório"),
   cpf_cli: z
     .string()
     .min(11, "O CPF deve ter 11 caracteres")
-    .regex(
-      /^\d{3}\.\d{3}\.\d{3}-\d{2}$/,
-      "O CPF deve estar no formato 000.000.000-00"
-    )
+    .regex(/^\d{11}$/, "CPF inválido")
     .nonempty("O CPF é obrigatório"),
   data_nascimento_cli: z
     .string()
