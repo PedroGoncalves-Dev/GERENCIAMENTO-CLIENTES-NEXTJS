@@ -17,7 +17,7 @@ export interface Iclients {
   bairro: string;
   cidade: string;
   estado: string;
-  complemento: string;
+  complemento: string | null;
 }
 export async function getAllClients(): Promise<Iclients[]> {
   const res = await fetch("http://localhost:3333/clientes", {
@@ -25,6 +25,8 @@ export async function getAllClients(): Promise<Iclients[]> {
   });
 
   const resData = await res.json();
-
+  if (resData.dados === null) {
+    return [];
+  }
   return resData.dados;
 }
