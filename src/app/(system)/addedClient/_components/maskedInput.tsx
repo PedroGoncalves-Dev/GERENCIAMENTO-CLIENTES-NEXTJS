@@ -1,12 +1,12 @@
-import { InputMask } from "@react-input/mask";
+import { InputMask, format } from "@react-input/mask";
 import { TypeNewClient } from "@/schema/clients/schema-create";
 import { Control, Controller } from "react-hook-form";
-import { object } from "zod";
 
 interface IpropsMask {
   mask: string;
   name: keyof TypeNewClient;
-  placeholder: string;
+  placeholder?: string;
+  className?: string;
   control: Control<TypeNewClient>;
   valor?: string;
 }
@@ -15,26 +15,31 @@ const MaskedInput = ({
   mask,
   name,
   placeholder,
+  className,
   control,
   valor,
 }: IpropsMask) => (
   <Controller
     name={name}
     control={control}
-    render={({ field: { onChange, value, ...field } }) => (
-      <InputMask
-        {...field}
-        value={value ?? ""}
-        onChange={(e) => onChange(e.target.value)}
-        defaultValue={valor}
-        mask={mask}
-        replacement="_"
-        placeholder={placeholder}
-        className="bg-[#1543601e] rounded-xl lg:border-b line leading-7 px-4 py-1"
-        showMask={false}
-        separate
-      />
-    )}
+    render={({ field: { onChange, value, ...field } }) => {
+      const maskOptions = { mask, replacement: { _: /\d/ } };
+      const formattedValue = value ? format(value, maskOptions) : "";
+
+      return (
+        <InputMask
+          {...field}
+          value={formattedValue}
+          onChange={(e) => onChange(e.target.value)}
+          mask={mask}
+          replacement="_"
+          placeholder={placeholder}
+          className={`mt-1 block w-full rounded-md border border-input bg-background px-3 py-2 ${className}`}
+          showMask={false}
+          separate
+        />
+      );
+    }}
   />
 );
 
