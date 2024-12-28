@@ -21,8 +21,8 @@ const DetailsClient = ({ cliente }: IpropsModal) => {
         <DialogTitle>Detalhes do Cliente</DialogTitle>
       </DialogHeader>
       <div className="grid grid-cols-repeat-1-min400px lg:grid-cols-repeat-2-min400px gap-4 ">
-        <div className="bg-blue-800 rounded-lg flex justify-end shadow-md">
-          <div className="grid grid-cols-2 gap-2 bg-slate-100 w-[97%] p-4">
+        <div className="bg-blue-800 rounded-l-2xl flex justify-end shadow-md">
+          <div className="grid grid-cols-2 rounded-l-2xl gap-2 bg-slate-100 w-[98%] p-4">
             <h2 className="col-span-2 text-lg font-bold border-b pb-2 text-blue-900">
               Dados pessoais
             </h2>
@@ -41,8 +41,8 @@ const DetailsClient = ({ cliente }: IpropsModal) => {
           </div>
         </div>
 
-        <div className="bg-blue-800 rounded-lg flex justify-end shadow-md">
-          <div className="grid grid-cols-2 gap-2 bg-slate-100 w-[97%] p-4">
+        <div className="bg-blue-800 rounded-l-2xl flex justify-end shadow-md">
+          <div className="grid grid-cols-2 gap-2 rounded-l-2xl bg-slate-100 w-[98%] p-4">
             <h2 className="col-span-2 text-lg font-bold border-b pb-2 text-blue-900">
               Endereço
             </h2>
@@ -61,20 +61,22 @@ const DetailsClient = ({ cliente }: IpropsModal) => {
           </div>
         </div>
 
-        <div className="bg-blue-800 rounded-lg flex justify-end shadow-md">
-          <div className="grid grid-cols-2 gap-2 bg-slate-100 w-[97%] p-4">
+        <div className="bg-blue-800 rounded-l-2xl flex justify-end shadow-md">
+          <div className="grid grid-cols-2 gap-2 rounded-l-2xl bg-slate-100 w-[98%] p-4">
             <h2 className="col-span-2 text-lg font-bold border-b pb-2 text-blue-900">
               Contato
             </h2>
             <span className="font-bold text-sm md:text-base">Telefone: </span>
             <PhoneFormatter value={cliente.telefone_cli} type="celular" />
             <span className="font-bold text-sm md:text-base">email: </span>
-            <span className="text-sm md:text-base">{cliente.email_cli}</span>
+            <span className="text-sm md:text-base text-wrap ">
+              {cliente.email_cli}
+            </span>
           </div>
         </div>
 
-        <div className="bg-blue-800 rounded-lg flex justify-end shadow-md">
-          <div className="grid grid-cols-2 gap-2 bg-slate-100 w-[97%] p-4">
+        <div className="bg-blue-800 rounded-l-2xl flex justify-end shadow-md">
+          <div className="grid grid-cols-2 gap-2 rounded-l-2xl bg-slate-100 w-[98%] p-4">
             <h2 className="col-span-2 text-lg font-bold border-b pb-2 text-blue-900">
               Observações:
             </h2>
