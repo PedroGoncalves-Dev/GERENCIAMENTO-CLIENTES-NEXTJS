@@ -2,6 +2,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Iclients } from "@/data-access/clients/get-all";
 import DropdownTable from "./_components/dropdown";
+import InputFormatter from "@/services/phoneFormated";
 
 interface CustomColumnMeta {
   className?: string;
@@ -23,6 +24,11 @@ export const columns: CustomColumnDef<Iclients, string>[] = [
   {
     accessorKey: "cpf_cli",
     header: "CPF",
+    cell: (row) => {
+      const cpf = row.row.original.cpf_cli;
+
+      return <InputFormatter value={cpf} type="cpf" />;
+    },
   },
   {
     accessorKey: "email_cli",
