@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "../ui/button";
+import { SlReload } from "react-icons/sl";
 
 interface IinactiveButtonProps {
   onClick: () => void;
@@ -19,7 +20,13 @@ const ButtonLoading = ({ onClick }: IinactiveButtonProps) => {
   };
   return (
     <Button onClick={handleClick} disabled={isLoading}>
-      {isLoading ? "Carregando..." : "Confirmar"}
+      {isLoading ? (
+        <>
+          <SlReload className="animate-spin-slow w-5 h-5" /> Inativando
+        </>
+      ) : (
+        "Inativar"
+      )}
     </Button>
   );
 };
