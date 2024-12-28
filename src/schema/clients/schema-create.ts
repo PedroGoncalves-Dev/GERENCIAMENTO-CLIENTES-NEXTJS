@@ -1,3 +1,4 @@
+import { validateCPF } from "@/services/cpf-validate";
 import { z } from "zod";
 
 export const newClientSchema = z.object({
@@ -18,9 +19,11 @@ export const newClientSchema = z.object({
     .nonempty("O telefone é obrigatório"),
   cpf_cli: z
     .string()
-    .min(11, "O CPF deve ter 11 caracteres")
-    .regex(/^\d{11}$/, "CPF inválido")
-    .nonempty("O CPF é obrigatório"),
+    .nonempty("CPF é obrigatório")
+    .transform((cpf) => cpf.replace(/\D/g, ""))
+    .refine((cpf) => validateCPF(cpf), {
+      message: "CPF inválido",
+    }),
   data_nascimento_cli: z
     .string()
     .min(10, "Data de nascimento inválida")
