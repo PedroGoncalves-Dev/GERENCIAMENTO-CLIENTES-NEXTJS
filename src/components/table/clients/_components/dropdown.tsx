@@ -40,7 +40,7 @@ const DropdownTable = ({ row }: { row: any }) => {
         title: "Sucesso",
         description: (
           <div className="flex items-center gap-2">
-            <FcOk />
+            <FcOk size={25} />
             ID copiado com sucesso!
           </div>
         ),
@@ -101,14 +101,14 @@ const DropdownTable = ({ row }: { row: any }) => {
           <DropdownMenuContent>
             <DropdownMenuSeparator />
             <DropdownMenuItem
-              className="cursor-pointer flex justify-between"
+              className="cursor-pointer flex justify-between hover:scale-105 transition-transform duration-200 ease-in-out"
               onClick={handleCopy}
             >
               Copiar ID <FaRegCopy />
             </DropdownMenuItem>
             <DialogTrigger asChild>
               <DropdownMenuItem
-                className="cursor-pointer flex justify-between"
+                className="cursor-pointer flex justify-between hover:scale-105 transition-transform duration-200 ease-in-out"
                 onClick={handleDetailsClick}
               >
                 Detalhes <TbListDetails />
@@ -117,7 +117,7 @@ const DropdownTable = ({ row }: { row: any }) => {
 
             <DialogTrigger asChild>
               <DropdownMenuItem
-                className="cursor-pointer flex justify-between"
+                className="cursor-pointer flex justify-between hover:scale-105 transition-transform duration-200 ease-in-out"
                 onClick={handleEditClick}
               >
                 Editar <FaRegEdit />
@@ -126,7 +126,7 @@ const DropdownTable = ({ row }: { row: any }) => {
 
             <DialogTrigger asChild>
               <DropdownMenuItem
-                className="cursor-pointer flex justify-between"
+                className="cursor-pointer flex justify-between hover:scale-105 transition-transform duration-200 ease-in-out"
                 onClick={handleDownloadPdfOrExcel}
               >
                 Exportar dados <TiExportOutline />
@@ -135,7 +135,7 @@ const DropdownTable = ({ row }: { row: any }) => {
 
             <DialogTrigger asChild>
               <DropdownMenuItem
-                className="cursor-pointer flex justify-between"
+                className="cursor-pointer flex justify-between hover:scale-105 transition-transform duration-200 ease-in-out"
                 onClick={handleInactiveClick}
               >
                 Inativar <MdOutlineAutoDelete />
