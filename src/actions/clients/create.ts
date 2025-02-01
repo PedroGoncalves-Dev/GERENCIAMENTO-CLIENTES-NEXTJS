@@ -36,13 +36,16 @@ export async function createClient(formData: TypeNewClient) {
     };
     console.log(dataCleint);
 
-    const res = await fetch("http://localhost:3333/clientes", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(dataCleint),
-    });
+    const res = await fetch(
+      "https://api-gerenciamento-cliente-nodejs-1.onrender.com/clientes",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataCleint),
+      }
+    );
     if (!res.ok) {
       throw new Error(`Erro ao cadastrar cliente: ${res.statusText}`);
     }

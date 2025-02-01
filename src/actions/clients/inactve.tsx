@@ -10,12 +10,15 @@ export async function inativeClient(id: string) {
   }
 
   try {
-    const res = await fetch(`http://localhost:3333/inativar-cliente/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `https://api-gerenciamento-cliente-nodejs-1.onrender.com/inativar-cliente/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     const resData = await res.json();
 
