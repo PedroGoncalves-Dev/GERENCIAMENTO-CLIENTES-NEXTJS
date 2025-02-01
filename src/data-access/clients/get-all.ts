@@ -20,9 +20,12 @@ export interface Iclients {
   complemento: string | null;
 }
 export async function getAllClients(): Promise<Iclients[]> {
-  const res = await fetch("http://localhost:3333/clientes", {
-    next: { tags: ["get-clients"] },
-  });
+  const res = await fetch(
+    "https://api-gerenciamento-cliente-nodejs-1.onrender.com/clientes",
+    {
+      next: { tags: ["get-clients"] },
+    }
+  );
 
   const resData = await res.json();
   if (resData.dados === null) {
