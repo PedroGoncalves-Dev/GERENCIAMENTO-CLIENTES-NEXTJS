@@ -1,7 +1,7 @@
 "use client";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/actions/clients/create";
 import MaskedInput from "./maskedInput";
@@ -17,6 +17,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { set } from "zod";
+
+interface IcepViaCep {
+  cep: string;
+  logradouro: string;
+  complemento: string;
+  unidade: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+  ibge: string;
+  gia: string;
+  ddd: string;
+  siafi: string;
+}
 
 const FormNewClient = () => {
   const [sucesso, setSucesso] = useState(false);
@@ -25,6 +40,8 @@ const FormNewClient = () => {
     handleSubmit,
     formState: { errors },
     control,
+    watch,
+    setValue,
     reset,
   } = useForm<TypeNewClient>({
     resolver: zodResolver(newClientSchema),
@@ -45,6 +62,27 @@ const FormNewClient = () => {
     },
   });
 
+  const cep = watch("cep");
+  useEffect(() => {
+    const handleCepSelecionado = async () => {
+      if (cep?.length === 8) {
+        try {
+          const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+
+          if (res.ok) {
+            const cepData: IcepViaCep = await res.json();
+            setValue("cidade", cepData.localidade);
+            setValue("estado", cepData.uf);
+            setValue("logradouro", cepData.logradouro);
+            setValue("bairro", cepData.bairro);
+            setValue("numero", cepData.unidade);
+          }
+        } catch (error) {}
+      }
+    };
+    handleCepSelecionado();
+  }, [cep, setValue]);
+
   const onSubmit = async (data: TypeNewClient) => {
     setIsLoading(true);
     try {
@@ -64,7 +102,7 @@ const FormNewClient = () => {
           title: "Sucesso",
           description: (
             <div className="flex items-center gap-2">
-              <FcOk />
+              <FcOk size={25} />
               Cliente cadastrado com sucesso!
             </div>
           ),
@@ -211,7 +249,7 @@ const FormNewClient = () => {
             </span>
           )}
         </div>
-        <div className="mt-5 mb-8">
+        <div className="mt-5 mb-8 flex flex-col gap-4">
           <label
             htmlFor=""
             className="after:content-['*'] after:text-red-600 after:ml-1 block text-sm font-medium "
@@ -299,7 +337,7 @@ const FormNewClient = () => {
               <input
                 type="text"
                 id="logradouro"
-                placeholder="Digite seu logradouro"
+                placeholder="Digite o número da sua residência"
                 {...field}
                 className="bg-[#1543601e] rounded-xl lg:border-b line leading-7 px-4 py-1"
               />
