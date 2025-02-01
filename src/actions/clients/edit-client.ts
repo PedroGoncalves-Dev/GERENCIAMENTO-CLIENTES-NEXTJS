@@ -22,13 +22,16 @@ export async function editClient(data: TypeNewClient, id: string) {
     },
   };
   try {
-    const res = await fetch(`http://localhost:3333/atualizar-cliente/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(bodyJson),
-    });
+    const res = await fetch(
+      `https://api-gerenciamento-cliente-nodejs-1.onrender.com/atualizar-cliente/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(bodyJson),
+      }
+    );
 
     const resData = await res.json();
 
