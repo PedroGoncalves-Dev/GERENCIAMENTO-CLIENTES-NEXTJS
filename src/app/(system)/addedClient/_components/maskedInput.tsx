@@ -31,9 +31,14 @@ const MaskedInput = ({
           {...field}
           value={formattedValue}
           onChange={(e) => {
-            // Remove todos os caracteres não numéricos antes de passar para o onChange
-            const numericValue = e.target.value.replace(/\D/g, "");
-            onChange(numericValue);
+            if (name === "data_nascimento_cli") {
+              // Mantém as barras para o campo de data
+              onChange(e.target.value);
+            } else {
+              // Remove caracteres não numéricos para outros campos
+              const numericValue = e.target.value.replace(/\D/g, "");
+              onChange(numericValue);
+            }
           }}
           mask={mask}
           replacement="_"
