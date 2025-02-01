@@ -12,7 +12,7 @@ const SideBar = () => {
       <nav>
         <div className="pt-8 pb-10 w-full">
           <Image
-            src={"/icons/logo-integraSys2.png"}
+            src={"/icons/logo-integraSys2.PNG"}
             alt={"logo"}
             width={200}
             height={200}
